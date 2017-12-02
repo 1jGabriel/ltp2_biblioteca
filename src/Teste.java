@@ -1,21 +1,19 @@
 import java.sql.Date;
 import java.util.ArrayList;
 
+import dao.BibliotecaDAO;
+import model.Biblioteca;
+
 public class Teste {
-private static Empregado empregado;
+private static Biblioteca empregado;
 	public static void main(String[] args) {
-		EmpregadoDAO empDAO = new EmpregadoDAO();
+		BibliotecaDAO bibDAO = new BibliotecaDAO();
 		//dadosEmpregado();
-		//empDAO.inserir(empregado);
-		//empDAO.atualizarEmpregado(empregado, 5);
-		//empDAO.atualizarNome(empregado, 5);
-		//empDAO.atualizarSobrenome(empregado, 5);
-		//empDAO.deletarPorNome(empregado);
-		//empDAO.deletarPorSobreNome(empregado);
-		//empDAO.deletarPorId(8);
+		bibDAO.inserir(empregado);
+
 		
-		ArrayList<Empregado> empregados = 
-				empDAO.consultar();
+		ArrayList<Biblioteca> empregados = 
+				bibDAO.consultar();
 		
 
 		imprimir(empregados);
@@ -28,9 +26,8 @@ private static Empregado empregado;
 	}
 	
 	public static void dadosEmpregado(){
-		empregado = new Empregado();
-		empregado.setNome("id 5");
-		empregado.setSobreNome("edilton");
-		empregado.setDataNascimento(Date.valueOf("1847-03-14"));
+		empregado = new Biblioteca();
+		empregado.setNome("Saraiva");
+
 	}
 }

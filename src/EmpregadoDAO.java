@@ -42,7 +42,7 @@ public class EmpregadoDAO {
 	private static final String DELETAR_ID= "DELETE FROM Empregado where id = ?";
 	//fim delete
 
-	public void deletarPorNome (Empregado emp){
+	public void deletarPorNome (Biblioteca emp){
 		con = ConnectionFactory.getConnection(); 
 
 
@@ -63,7 +63,7 @@ public class EmpregadoDAO {
 
 	}
 
-	public void deletarPorSobreNome (Empregado emp){
+	public void deletarPorSobreNome (Biblioteca emp){
 		con = ConnectionFactory.getConnection(); 
 
 
@@ -109,7 +109,7 @@ public class EmpregadoDAO {
 	public void inserir (String nome, String sobrenome,String matricula){
 
 	}
-	public void inserir (Empregado emp)  {
+	public void inserir (Biblioteca emp)  {
 
 		con = ConnectionFactory.getConnection(); 
 
@@ -131,7 +131,7 @@ public class EmpregadoDAO {
 		}
 	}                              
 
-	public void atualizarNome(Empregado emp, int id){
+	public void atualizarNome(Biblioteca emp, int id){
 		con = ConnectionFactory.getConnection(); 
 
 
@@ -151,7 +151,7 @@ public class EmpregadoDAO {
 		}
 	}
 
-	public void atualizarSobrenome (Empregado emp, int id){
+	public void atualizarSobrenome (Biblioteca emp, int id){
 		con = ConnectionFactory.getConnection(); 
 
 
@@ -171,7 +171,7 @@ public class EmpregadoDAO {
 		}
 	}
 
-	public void atualizarEmpregado (Empregado emp, int id){
+	public void atualizarEmpregado (Biblioteca emp, int id){
 		con = ConnectionFactory.getConnection(); 
 
 
@@ -192,9 +192,9 @@ public class EmpregadoDAO {
 		}
 	}
 
-	public ArrayList<Empregado> consultar(int id) {
+	public ArrayList<Biblioteca> consultar(int id) {
 		con = ConnectionFactory.getConnection(); 
-		ArrayList<Empregado> empregados = new ArrayList<Empregado>();
+		ArrayList<Biblioteca> empregados = new ArrayList<Biblioteca>();
 		try {
 			con.prepareStatement(CONSULTAR_POR_ID);
 			java.sql.PreparedStatement preparedStmt = con.prepareStatement(CONSULTAR_POR_ID);
@@ -204,7 +204,7 @@ public class EmpregadoDAO {
 			ResultSet resultado = preparedStmt.executeQuery();     
 			while(resultado.next())
 			{
-				Empregado emp = new Empregado();
+				Biblioteca emp = new Biblioteca();
 				emp.setId(resultado.getInt("id"));
 				emp.setNome(resultado.getString("nome"));
 				emp.setSobreNome(resultado.getString("sobrenome"));
@@ -219,12 +219,12 @@ public class EmpregadoDAO {
 		return empregados;
 	}
 
-	public ArrayList<Empregado> consultar() {   
+	public ArrayList<Biblioteca> consultar() {   
 		//obter conex�o chamando a classe ConnectionFactory
 		con = ConnectionFactory.getConnection(); 
 
 		//criar a lista resultante da consulta a ser retornada.
-		ArrayList<Empregado> empregados = new ArrayList<Empregado>();
+		ArrayList<Biblioteca> empregados = new ArrayList<Biblioteca>();
 
 		try {
 			//cria o comando.
@@ -237,7 +237,7 @@ public class EmpregadoDAO {
 			//acrescentando � lista.
 			while(resultado.next())
 			{
-				Empregado emp = new Empregado();
+				Biblioteca emp = new Biblioteca();
 				emp.setId(resultado.getInt("id"));
 				emp.setNome(resultado.getString("nome"));
 				emp.setSobreNome(resultado.getString("sobrenome"));

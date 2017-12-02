@@ -1,6 +1,6 @@
 import java.sql.Date;
 
-public class Empregado {
+public class Biblioteca {
 	
 	private int id;
 	private String nome;
