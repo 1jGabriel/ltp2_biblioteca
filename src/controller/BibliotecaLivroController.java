@@ -29,13 +29,13 @@ public class BibliotecaLivroController {
 	}
 	
 	public void deletarLivro(Livro livro, Biblioteca biblioteca){
-		livroController.deletarLivro(livro);
+		//livroController.deletarLivro(livro);
 		bibliotecaLivroDAO.deletarLivro(livro.getId(), biblioteca.getId());
 	}
 	
 	public void deletarBiblioteca(Biblioteca biblioteca){
-		bibliotecaController.deletarBiblioteca(biblioteca);
 		bibliotecaLivroDAO.deletarBibliotecaLivro(biblioteca.getId());
+		//bibliotecaController.deletarBiblioteca(biblioteca);
 		
 	}
 	

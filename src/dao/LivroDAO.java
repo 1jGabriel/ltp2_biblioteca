@@ -19,7 +19,7 @@ public class LivroDAO {
 			"SELECT * FROM LIVRO";
 	
 	private static final String CONSULTA_lIVRO_BIBLIOTECA_ID= 
-			"SELECT DISTINCT id, nome, editora, edicao, area FROM LIVRO INNER JOIN BIBLIOTECA_LIVRO ON BIBLIOTECA_LIVRO.LIVRO_ID = LIVRO_ID WHERE BIBLIOTECA_LIVRO.BIBLIOTECA_ID = ?";
+			"SELECT DISTINCT l.id, l.nome, l.editora, l.edicao, l.area FROM LIVRO l INNER JOIN BIBLIOTECA_LIVRO bl ON bl.LIVRO_ID = l.id where bl.BIBLIOTECA_ID = ?";
 	
 	private static final String DELETAR_ID= "DELETE FROM Livro where id = ?";
 	
@@ -78,16 +78,18 @@ public class LivroDAO {
 		ArrayList<Livro> livros = new ArrayList<Livro>();
 
 		try {
-			comando = con.createStatement();
+			con.prepareStatement(CONSULTA_lIVRO_BIBLIOTECA_ID);
+			java.sql.PreparedStatement preparedStmt = con.prepareStatement(CONSULTA_lIVRO_BIBLIOTECA_ID);
 
-			ResultSet resultado = comando.executeQuery(CONSULTA_lIVRO_BIBLIOTECA_ID);
+			preparedStmt.setInt(1, id);
+
+			ResultSet resultado = preparedStmt.executeQuery();
 
 			while(resultado.next())
 			{
 				livros.add(new Livro(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("editora"),resultado.getString("edicao"), resultado.getString("area")));
 				
 			}
-			comando.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

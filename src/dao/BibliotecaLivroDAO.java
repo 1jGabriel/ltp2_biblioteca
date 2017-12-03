@@ -29,7 +29,7 @@ public class BibliotecaLivroDAO {
 	private static final String DELETAR_LIVRO = 
 			"DELETE FROM biblioteca_livro where biblioteca_livro.livro_id = ? and biblioteca_livro.biblioteca_id = ?";
 	
-	private static final String DELETAR_LIVRO_BIBLIOTECA = "DELETE FROM biblioteca_livro where and biblioteca_livro.biblioteca_id = ?";
+	private static final String DELETAR_LIVRO_BIBLIOTECA = "DELETE FROM biblioteca_livro where biblioteca_id = ?";
 	
 	
 	public void inserirBiblioteca (int id)  {
@@ -117,11 +117,12 @@ public class BibliotecaLivroDAO {
 		ArrayList<BibliotecaLivro> bibliotecas = new ArrayList<BibliotecaLivro>();
 
 		try {
-			//cria o comando.
-			comando = con.createStatement();
-			//executa a consulta
+			con.prepareStatement(CONSULTA_ID_BIBLIOTECA);
+			java.sql.PreparedStatement preparedStmt = 
+					con.prepareStatement(CONSULTA_ID_BIBLIOTECA);
 
-			ResultSet resultado = comando.executeQuery(CONSULTA_ID_BIBLIOTECA);
+			preparedStmt.setInt(1, id);
+			ResultSet resultado = preparedStmt.executeQuery();
 
 			//navega pelo resultado, montando objetos Empregado e 
 			//acrescentando � lista.
@@ -133,7 +134,6 @@ public class BibliotecaLivroDAO {
 				bibliotecas.add(bib);
 			}
 			//fecha comando e conex�o.
-			comando.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

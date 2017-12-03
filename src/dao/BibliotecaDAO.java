@@ -91,14 +91,13 @@ public class BibliotecaDAO {
 		ArrayList<Biblioteca> bibliotecas = new ArrayList<Biblioteca>();
 
 		try {
-			//cria o comando.
-			comando = con.createStatement();
-			//executa a consulta
+			con.prepareStatement(CONSULTA_POR_ID);
+			java.sql.PreparedStatement preparedStmt = 
+					con.prepareStatement(CONSULTA_POR_ID);
 
-			ResultSet resultado = comando.executeQuery(CONSULTA_POR_ID);
-
-			//navega pelo resultado, montando objetos Empregado e 
-			//acrescentando � lista.
+			preparedStmt.setInt(1, id);
+			
+			ResultSet resultado = preparedStmt.executeQuery();
 			while(resultado.next())
 			{
 				Biblioteca bib = new Biblioteca();
@@ -108,7 +107,6 @@ public class BibliotecaDAO {
 				bibliotecas.add(bib);
 			}
 			//fecha comando e conex�o.
-			comando.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

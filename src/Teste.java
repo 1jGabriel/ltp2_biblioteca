@@ -20,12 +20,15 @@ private static BibliotecaLivroController blc = new BibliotecaLivroController();
 
 public static void main(String[] args) {
 	bc = new BibliotecaController();
-	
+	ArrayList<Livro> livros = new  ArrayList<Livro>();
 	dadosBiblioteca();
 	dadosLivros();
 	
-	blc.inserirLivro(livro, biblioteca);
-	lc.listarLivrosPorBiblioteca(biblioteca);
+	//blc.inserirLivro(livro, biblioteca);
+	//blc.deletarBiblioteca(biblioteca);
+	//blc.deletarLivro(livro, biblioteca);
+	//livros = lc.listarLivrosPorBiblioteca(biblioteca);
+	//imprimir(livros);
 		//lc.inserirLivro(livro);
 		//lc.updateLivro(livro);
 		//lc.deletarLivro(livro);
@@ -45,7 +48,7 @@ public static void main(String[] args) {
 	public static void dadosBiblioteca(){
 		biblioteca = new Biblioteca();
 		biblioteca.setNome("Bib 2");
-		biblioteca.setId(5);
+		biblioteca.setId(3);
 		
 		/*biblioteca2 = new Biblioteca();
 		biblioteca2.setId(2);
@@ -54,7 +57,7 @@ public static void main(String[] args) {
 	}
 	
 	public static void dadosLivros(){
-		livro= new Livro(8 ,"update", "update", "update", "update");
+		livro= new Livro(4 ,"update", "update", "update", "update");
 		
 	}
 	
