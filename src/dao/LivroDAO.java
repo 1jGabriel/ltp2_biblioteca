@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import model.Biblioteca;
 import model.Livro;
 
 public class LivroDAO {
@@ -18,6 +20,9 @@ public class LivroDAO {
 	private static final String CONSULTA_TODOS = 
 			"SELECT * FROM LIVRO";
 	
+	private static final String CONSULTA_POR_ID = 
+			"SELECT * FROM livro where id = ?" ;
+	
 	private static final String CONSULTA_lIVRO_BIBLIOTECA_ID= 
 			"SELECT DISTINCT l.id, l.nome, l.editora, l.edicao, l.area FROM LIVRO l INNER JOIN BIBLIOTECA_LIVRO bl ON bl.LIVRO_ID = l.id where bl.BIBLIOTECA_ID = ?";
 	
@@ -26,7 +31,27 @@ public class LivroDAO {
 	
 	private static final String UPDATE_LIVRO = "UPDATE livro SET nome = ?, editora = ?, edicao = ?, area = ? WHERE livro.id = ?";
 	
-	
+	public ArrayList<Livro> consultar(int id) {   
+		con = ConnectionFactory.getConnection(); 
+		ArrayList<Livro> livros = new ArrayList<Livro>();
+
+		try {
+			con.prepareStatement(CONSULTA_POR_ID);
+			java.sql.PreparedStatement preparedStmt = 
+					con.prepareStatement(CONSULTA_POR_ID);
+
+			preparedStmt.setInt(1, id);
+			
+			ResultSet resultado = preparedStmt.executeQuery();
+			while(resultado.next()){					
+				livros.add(new Livro(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("editora"), resultado.getString("edicao"), resultado.getString("area")));
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return livros;
+	}
 	
 	public void inserirLivro (Livro livro)  {
 

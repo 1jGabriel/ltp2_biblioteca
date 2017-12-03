@@ -50,21 +50,13 @@ public class BibliotecaDAO {
 	}                              
 
 	public ArrayList<Biblioteca> consultar() {   
-		//obter conex�o chamando a classe ConnectionFactory
 		con = ConnectionFactory.getConnection(); 
 
-		//criar a lista resultante da consulta a ser retornada.
 		ArrayList<Biblioteca> bibliotecas = new ArrayList<Biblioteca>();
 
 		try {
-			//cria o comando.
 			comando = con.createStatement();
-			//executa a consulta
-
 			ResultSet resultado = comando.executeQuery(CONSULTA_TODOS);
-
-			//navega pelo resultado, montando objetos Empregado e 
-			//acrescentando � lista.
 			while(resultado.next())
 			{
 				Biblioteca bib = new Biblioteca();
@@ -72,22 +64,18 @@ public class BibliotecaDAO {
 				bib.setNome(resultado.getString("nome"));
 				bibliotecas.add(bib);
 			}
-			//fecha comando e conex�o.
 			comando.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//retorna a lista de empregados.
 		return bibliotecas;
 	}
 	
 	
 	public ArrayList<Biblioteca> consultar(int id) {   
-		//obter conex�o chamando a classe ConnectionFactory
 		con = ConnectionFactory.getConnection(); 
 
-		//criar a lista resultante da consulta a ser retornada.
 		ArrayList<Biblioteca> bibliotecas = new ArrayList<Biblioteca>();
 
 		try {
@@ -98,20 +86,16 @@ public class BibliotecaDAO {
 			preparedStmt.setInt(1, id);
 			
 			ResultSet resultado = preparedStmt.executeQuery();
-			while(resultado.next())
-			{
+			while(resultado.next()){
 				Biblioteca bib = new Biblioteca();
 				bib.setId(resultado.getInt("id"));
 				bib.setNome(resultado.getString("nome"));
-				
 				bibliotecas.add(bib);
 			}
-			//fecha comando e conex�o.
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//retorna a lista de empregados.
 		return bibliotecas;
 	}
 	
@@ -121,12 +105,8 @@ public class BibliotecaDAO {
 		try {
 			con.prepareStatement(DELETAR_BIBLIOTECA);
 			java.sql.PreparedStatement preparedStmt = con.prepareStatement(DELETAR_BIBLIOTECA);
-
 			preparedStmt.setInt (1, bibliotecaId);
-
-
 			preparedStmt.execute();     
-
 			con.close();
 		} catch (SQLException e) {
 			// 
@@ -146,7 +126,6 @@ public class BibliotecaDAO {
 
 			con.close();
 		} catch (SQLException e) {
-			// 
 			e.printStackTrace();
 		}
 	}
