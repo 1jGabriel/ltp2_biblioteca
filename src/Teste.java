@@ -21,9 +21,17 @@ private static BibliotecaLivroController blc = new BibliotecaLivroController();
 public static void main(String[] args) {
 	bc = new BibliotecaController();
 	
-		dadosLivros();
-		bc.inserirBiblioteca(biblioteca);
-		bc.listarTodasBibliotecas();
+	dadosBiblioteca();
+	dadosLivros();
+	
+	blc.inserirLivro(livro, biblioteca);
+	lc.listarLivrosPorBiblioteca(biblioteca);
+		//lc.inserirLivro(livro);
+		//lc.updateLivro(livro);
+		//lc.deletarLivro(livro);
+		//lc.listarTodasLivros();
+		//bc.inserirBiblioteca(biblioteca);
+		//bc.listarTodasBibliotecas();
 		//bc.updateBiblioteca(biblioteca2);
 		//bc.deletarBiblioteca(biblioteca2);
 	}
@@ -36,7 +44,8 @@ public static void main(String[] args) {
 	
 	public static void dadosBiblioteca(){
 		biblioteca = new Biblioteca();
-		biblioteca.setNome("Bib 5");
+		biblioteca.setNome("Bib 2");
+		biblioteca.setId(5);
 		
 		/*biblioteca2 = new Biblioteca();
 		biblioteca2.setId(2);
@@ -45,7 +54,7 @@ public static void main(String[] args) {
 	}
 	
 	public static void dadosLivros(){
-		livro= new Livro("nome", "editora", "edicao", "area");
+		livro= new Livro(8 ,"update", "update", "update", "update");
 		
 	}
 	

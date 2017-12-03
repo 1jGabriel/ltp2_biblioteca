@@ -61,7 +61,7 @@ public class BibliotecaLivroDAO {
 		try {
 			con.prepareStatement(INSERIR_BIBLIOTECA_LIVRO);
 			java.sql.PreparedStatement preparedStmt = 
-					con.prepareStatement(INSERIR_BIBLIOTECA);
+					con.prepareStatement(INSERIR_BIBLIOTECA_LIVRO);
 
 			preparedStmt.setInt(1, idBiblioteca);
 			preparedStmt.setInt(2, idLivro);
