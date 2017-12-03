@@ -7,8 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import model.Biblioteca;
-import model.BibliotecaLivro;
-import model.Livro;
+
 
 
 public class BibliotecaDAO {

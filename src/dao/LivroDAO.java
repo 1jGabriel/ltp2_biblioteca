@@ -23,7 +23,6 @@ public class LivroDAO {
 	
 	private static final String DELETAR_ID= "DELETE FROM Livro where id = ?";
 	
-	private static final String DELETAR_ALL= "DELETE FROM Livro ";	
 	
 	private static final String UPDATE_LIVRO = "UPDATE livro SET nome = ?, editora = ?, edicao = ?, area = ? WHERE livro.id = ?";
 	

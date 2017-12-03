@@ -20,6 +20,17 @@ public class Livro {
 		this.edicao = edicao;
 		this.area = area;
 	}
+	
+	public Livro(String nome, String editora, String edicao, String area) {
+		super();
+		this.nome = nome;
+		this.editora = editora;
+		this.edicao = edicao;
+		this.area = area;
+	}
+	
+	
+	
 	public int getId() {
 		return id;
 	}
