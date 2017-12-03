@@ -9,7 +9,7 @@ private static Biblioteca empregado;
 	public static void main(String[] args) {
 		BibliotecaDAO bibDAO = new BibliotecaDAO();
 		//dadosEmpregado();
-		bibDAO.inserir(empregado);
+		//bibDAO.inserir(empregado);
 
 		
 		ArrayList<Biblioteca> empregados = 
@@ -21,7 +21,7 @@ private static Biblioteca empregado;
 
 	public static void imprimir(ArrayList<?> lista){
 		for (Object object : lista) {
-			System.out.println(object);
+			System.out.println(object.toString());
 		}
 	}
 	
