@@ -36,7 +36,7 @@ public static void main(String[] args) {
 		//bc.inserirBiblioteca(biblioteca);
 		//bc.listarTodasBibliotecas();
 		//bc.updateBiblioteca(biblioteca2);
-		//bc.deletarBiblioteca(biblioteca2);
+		//bc.deletarBiblioteca(biblioteca);
 	}
 
 	public static void imprimir(ArrayList<?> lista){
@@ -48,7 +48,7 @@ public static void main(String[] args) {
 	public static void dadosBiblioteca(){
 		biblioteca = new Biblioteca();
 		biblioteca.setNome("Bib 2");
-		biblioteca.setId(3);
+		biblioteca.setId(6);
 		
 		/*biblioteca2 = new Biblioteca();
 		biblioteca2.setId(2);
@@ -57,7 +57,7 @@ public static void main(String[] args) {
 	}
 	
 	public static void dadosLivros(){
-		livro= new Livro(4 ,"update", "update", "update", "update");
+		livro= new Livro(6 ,"update", "update", "update", "update");
 		
 	}
 	

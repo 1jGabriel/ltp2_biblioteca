@@ -30,6 +30,7 @@ public class BibliotecaLivroDAO {
 			"DELETE FROM biblioteca_livro where biblioteca_livro.livro_id = ? and biblioteca_livro.biblioteca_id = ?";
 	
 	private static final String DELETAR_LIVRO_BIBLIOTECA = "DELETE FROM biblioteca_livro where biblioteca_id = ?";
+	private static final String DELETAR_LIVRO_SOZINHO = "DELETE FROM biblioteca_livro where livro_id= ?";
 	
 	
 	public void inserirBiblioteca (int id)  {
@@ -150,6 +151,25 @@ public class BibliotecaLivroDAO {
 
 			preparedStmt.setInt (1, idLivro);
 			preparedStmt.setInt (2, idBiblioteca);
+
+
+			preparedStmt.execute();     
+
+			con.close();
+		} catch (SQLException e) {
+			// 
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void deletarLivro(int idLivro){
+		con = ConnectionFactory.getConnection(); 
+		try {
+			con.prepareStatement(DELETAR_LIVRO);
+			java.sql.PreparedStatement preparedStmt = con.prepareStatement(DELETAR_LIVRO_SOZINHO);
+
+			preparedStmt.setInt (1, idLivro);
 
 
 			preparedStmt.execute();     

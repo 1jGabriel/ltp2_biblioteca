@@ -7,8 +7,7 @@ import model.Biblioteca;
 import model.Livro;
 
 public class BibliotecaLivroController {
-	private LivroController livroController = new LivroController();
-	private BibliotecaController bibliotecaController = new BibliotecaController();
+
 	private BibliotecaLivroDAO bibliotecaLivroDAO = new BibliotecaLivroDAO();
 	
 	
@@ -31,6 +30,10 @@ public class BibliotecaLivroController {
 	public void deletarLivro(Livro livro, Biblioteca biblioteca){
 		//livroController.deletarLivro(livro);
 		bibliotecaLivroDAO.deletarLivro(livro.getId(), biblioteca.getId());
+	}
+	public void deletarLivro(Livro livro){
+		//livroController.deletarLivro(livro);
+		bibliotecaLivroDAO.deletarLivro(livro.getId());
 	}
 	
 	public void deletarBiblioteca(Biblioteca biblioteca){

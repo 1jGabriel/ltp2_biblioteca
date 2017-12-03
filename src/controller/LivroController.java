@@ -8,6 +8,7 @@ import model.Livro;
 
 public class LivroController {
 	private LivroDAO livroDAO = new LivroDAO();
+	private BibliotecaLivroController bibliotecaLivroController = new BibliotecaLivroController();
 	
 	public void inserirLivro(Livro livro){
 		livroDAO.inserirLivro(livro);
@@ -27,6 +28,7 @@ public class LivroController {
 	}
 	
 	public void deletarLivro(Livro livro){
+		bibliotecaLivroController.deletarLivro(livro);
 		livroDAO.deletarLivro(livro.getId());
 	}
 	
