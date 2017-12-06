@@ -19,22 +19,11 @@ public class EditarLivroServlet extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			
 			int id = Integer.parseInt(request.getParameter("id"));
-			//String id = request.getParameter("id");
-//			String nomeLivro =  request.getParameter("nomeLivro");
-//			String edicao =  request.getParameter("edicao");
-//			String editora =  request.getParameter("editora");
-//			String area =  request.getParameter("area");
-//			
-//			Livro livro = new Livro();
-//			livro.setArea(area);
-//			livro.setEdicao(edicao);
-//			livro.setEditora(editora);
-//			livro.setNome(nomeLivro);
-//			
-//			new LivroDAO().updateLivro(livro);;
 
-			//response.sendRedirect("/projetoBiblioteca/sucesso.jsp");
+			request.getSession().setAttribute("idLivroEditar", id);
+			response.sendRedirect("/projetoBiblioteca/editarLivro.jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();

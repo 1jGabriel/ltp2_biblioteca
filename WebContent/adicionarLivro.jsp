@@ -3,7 +3,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="br.com.projeto.biblioteca.dao.BibliotecaDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="br.com.projeto.biblioteca.controller.BibliotecaController"%>
 <%@page import="br.com.projeto.biblioteca.model.Biblioteca"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -56,26 +57,23 @@
 					<td style="width: 80em;"><input type="text" name="area"
 						style="width: 100%;" value="<c:out value='${book.title}' />" /></td>
 				</tr>
-				<%-- <tr>
+				<tr>
 					<th style="width: 15em;">Biblioteca: *</th>
-					<td style="width: 80em;"><input type="text" name="biblioteca"
-						style="width: 100%;" value="<c:out value='${book.title}' />" />
-					</td>
+					<td style="width: 80em;">
+					<select name="biblioteca" style="width: 90em;" >
+                        <%
+                            List<Biblioteca> list = new BibliotecaController().listarTodasBibliotecas();
+                            Biblioteca biblioteca;
+                            for (Object obj : list){
+                            	biblioteca = (Biblioteca)obj;
+                            	 out.println("<option value= " + biblioteca.getId() + ">" + biblioteca.getNome() + "</option>");
+                            }
+                        %> 
+                      </select>
+					</td>				
 
-					<%
-						ArrayList<Biblioteca> bibliotecas = new BibliotecaDAO().consultar();
-						for (int i = 0; i < bibliotecas.size(); i++) {
-							Biblioteca linhaLocal = bibliotecas.get(i);
-					%>
-					<select name="biblioteca">
-						<option value=<%=linhaLocal.getId()%>>
-							<%=linhaLocal.getNome()%>
-						</option>
-					</select>
-					<%
-						} //fecha for
-					%>
-				</tr> --%>
+					
+				</tr> 
 
 				<tr>
 					<td colspan="2" align="center"><input type="submit"

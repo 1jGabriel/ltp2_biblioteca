@@ -25,7 +25,7 @@ public class BibliotecaController {
 		return bibliotecaDao.consultar();
 	}
 
-	public ArrayList<Biblioteca> listarBibliotecaPorId(Biblioteca biblioteca) {
+	public Biblioteca listarBibliotecaPorId(Biblioteca biblioteca) {
 		return bibliotecaDao.consultar(biblioteca.getId());
 	}
 

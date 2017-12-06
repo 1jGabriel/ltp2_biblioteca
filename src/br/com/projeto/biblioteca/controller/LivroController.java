@@ -30,6 +30,10 @@ public class LivroController {
 		livroDAO.deletarLivro(livro.getId());
 	}
 	
+	public Livro consultar(int id) {
+		return livroDAO.consultar(id);
+	}
+	
 	
 
 }

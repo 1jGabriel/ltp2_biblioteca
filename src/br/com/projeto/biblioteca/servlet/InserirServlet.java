@@ -1,6 +1,7 @@
 package br.com.projeto.biblioteca.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.projeto.biblioteca.dao.BibliotecaDAO;
+import br.com.projeto.biblioteca.dao.BibliotecaLivroDAO;
 import br.com.projeto.biblioteca.dao.LivroDAO;
 import br.com.projeto.biblioteca.model.Biblioteca;
 import br.com.projeto.biblioteca.model.Livro;
@@ -26,6 +28,9 @@ public class InserirServlet extends HttpServlet {
 			String editora = request.getParameter("editora");
 			String edicao = request.getParameter("edicao");
 			String area = request.getParameter("area");
+			String bibliotecaId = request.getParameter("biblioteca");
+			
+			
 
 			if (nomeBiblioteca != null) {
 				Biblioteca biblioteca = new Biblioteca();
@@ -38,9 +43,13 @@ public class InserirServlet extends HttpServlet {
 				livro.setArea(area);
 				livro.setEdicao(edicao);
 				livro.setEditora(editora);
-				livro.setNome(nomeLivro);
+				livro.setNome(nomeLivro);		
 
-				new LivroDAO().inserirLivro(livro);				
+				new LivroDAO().inserirLivro(livro);	
+				
+				List<Livro> livroInserido = new LivroDAO().consultarPorNome(livro.getNome());
+				
+				new BibliotecaLivroDAO().inserirLivroBiblioteca(new Integer(bibliotecaId), livroInserido.get(0).getId());
 			}
 			
 			response.sendRedirect("/projetoBiblioteca/sucesso.jsp");
@@ -66,6 +75,6 @@ public class InserirServlet extends HttpServlet {
 	@Override
 	public String getServletInfo() {
 		return "Short description";
-	}
-
+	}	
+	
 }

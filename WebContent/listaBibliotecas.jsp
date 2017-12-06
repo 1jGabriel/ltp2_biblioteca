@@ -1,4 +1,5 @@
-<%@page import="br.com.projeto.biblioteca.controller.BibliotecaController"%>
+<%@page
+	import="br.com.projeto.biblioteca.controller.BibliotecaController"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,7 +22,8 @@
 	</div>
 	<div class="div-action">
 		<a href="/projetoBiblioteca/adicionarBiblioteca.jsp">• Adicionar
-			biblioteca</a> &nbsp;&nbsp;&nbsp; <a href="/DeletarTodasBibliotecas">• Deletar todas</a>
+			biblioteca</a> &nbsp;&nbsp;&nbsp; <a href="/DeletarTodasBibliotecas">•
+			Deletar todas</a>
 
 	</div>
 	<%-- </center> --%>
@@ -34,7 +36,7 @@
 
 			<tr>
 				<th style="width: 80em;">Nome</th>
-				<th style="width: 10em;"></th>
+				<th style="width: 20em;"></th>
 			</tr>
 			<%
 				ArrayList<Biblioteca> listaBibliotecas = new BibliotecaController().listarTodasBibliotecas();
@@ -42,16 +44,22 @@
 			%>
 			<tr>
 				<td><%=biblioteca.getNome()%></td>
-				<td><%=biblioteca.getId()%></td>
-				
+				<%-- <td><%=biblioteca.getId()%></td> --%>
+
 				<%-- request.getSession().setAttribute("biblioteca", biblioteca); --%>
-				<% request.setAttribute("biblioteca", biblioteca); %> 
-				
-				
-				
-				<td><a href="http://localhost:8080/projetoBiblioteca/EditarBiblioteca?id=${biblioteca.getId()}&nome=${biblioteca.getNome()}">Editar</a>
-					&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a href="http://localhost:8080/projetoBiblioteca/DeletarBiblioteca?id=${biblioteca.getId()}" >Deletar</a></td>
+				<%
+					request.setAttribute("biblioteca", biblioteca);
+				%>
+
+
+
+				<td style="text-align: -webkit-center;"><a
+					href="http://localhost:8080/projetoBiblioteca/EditarBiblioteca?id=${biblioteca.getId()}&nome=${biblioteca.getNome()}">Editar</a>
+					&nbsp;&nbsp;&nbsp;&nbsp; <a
+					href="http://localhost:8080/projetoBiblioteca/DeletarBiblioteca?id=${biblioteca.getId()}">Deletar</a>
+					&nbsp;&nbsp;&nbsp;&nbsp; <a
+					href="http://localhost:8080/projetoBiblioteca/VisualizarLivros?id=${biblioteca.getId()}">Ver
+						Livros</a></td>
 			</tr>
 
 			<%
