@@ -60,7 +60,7 @@
 				<tr>
 					<th style="width: 15em;">Biblioteca: *</th>
 					<td style="width: 80em;">
-					<select name="biblioteca" style="width: 90em;" >
+					<select name="biblioteca" multiple style="width: 90em;" >
                         <%
                             List<Biblioteca> list = new BibliotecaController().listarTodasBibliotecas();
                             Biblioteca biblioteca;

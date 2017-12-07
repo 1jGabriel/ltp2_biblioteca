@@ -28,9 +28,7 @@ public class InserirServlet extends HttpServlet {
 			String editora = request.getParameter("editora");
 			String edicao = request.getParameter("edicao");
 			String area = request.getParameter("area");
-			String bibliotecaId = request.getParameter("biblioteca");
-			
-			
+			String[] bibliotecasId = request.getParameterValues("biblioteca");
 
 			if (nomeBiblioteca != null) {
 				Biblioteca biblioteca = new Biblioteca();
@@ -43,17 +41,21 @@ public class InserirServlet extends HttpServlet {
 				livro.setArea(area);
 				livro.setEdicao(edicao);
 				livro.setEditora(editora);
-				livro.setNome(nomeLivro);		
+				livro.setNome(nomeLivro);
 
-				new LivroDAO().inserirLivro(livro);	
-				
+				new LivroDAO().inserirLivro(livro);
+
 				List<Livro> livroInserido = new LivroDAO().consultarPorNome(livro.getNome());
-				
-				new BibliotecaLivroDAO().inserirLivroBiblioteca(new Integer(bibliotecaId), livroInserido.get(0).getId());
+
+				for (String biblioteca : bibliotecasId) {
+					
+					new BibliotecaLivroDAO().inserirLivroBiblioteca(new Integer(biblioteca),livroInserido.get(0).getId());
+				}
+
 			}
-			
+
 			response.sendRedirect("/projetoBiblioteca/sucesso.jsp");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/projetoBiblioteca/erro.jsp");
@@ -75,6 +77,6 @@ public class InserirServlet extends HttpServlet {
 	@Override
 	public String getServletInfo() {
 		return "Short description";
-	}	
-	
+	}
+
 }
