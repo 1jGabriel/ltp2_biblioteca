@@ -26,6 +26,8 @@ public class LivroDAO {
 	private static final String UPDATE_LIVRO = "UPDATE livro SET nome = ?, editora = ?, edicao = ?, area = ? WHERE livro.id = ?";
 
 	private static final String CONSULTA_POR_NOME = "SELECT * FROM livro where nome like ?";
+	
+	private static final String CONSULTA_POR_EDITORA = "SELECT * FROM livro where livro.editora like ? ";
 
 	public Livro consultar(int id) {
 		con = ConnectionFactory.getConnection();
@@ -48,6 +50,29 @@ public class LivroDAO {
 		}		
 		
 		return livros.get(0);
+	}
+	
+	public ArrayList<Livro> consultar(String editora) {
+		con = ConnectionFactory.getConnection();
+		ArrayList<Livro> livros = new ArrayList<Livro>();
+
+		try {
+			con.prepareStatement(CONSULTA_POR_EDITORA);
+			java.sql.PreparedStatement preparedStmt = con.prepareStatement(CONSULTA_POR_EDITORA);
+
+			preparedStmt.setString(1, editora+ "%");
+
+			ResultSet resultado = preparedStmt.executeQuery();
+			while (resultado.next()) {
+				livros.add(new Livro(resultado.getInt("id"), resultado.getString("nome"),
+						resultado.getString("editora"), resultado.getString("edicao"), resultado.getString("area")));
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		return livros;
 	}
 
 	//TODO AJUSTAR CONSULTA
