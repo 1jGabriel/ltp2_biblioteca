@@ -22,8 +22,7 @@
 	</div>
 	<div class="div-action">
 		<a href="/projetoBiblioteca/adicionarBiblioteca.jsp">• Adicionar
-			biblioteca</a> &nbsp;&nbsp;&nbsp; <a href="/DeletarTodasBibliotecas">•
-			Deletar todas</a>
+			biblioteca</a> &nbsp;&nbsp;&nbsp; 
 
 	</div>
 	<%-- </center> --%>

@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Lista de Livros</title>
+<title>Lista de Livros Por Editora</title>
 <link rel="StyleSheet" type="text/css" href="css/style.css"
 	media="screen">
 </head>
@@ -16,24 +16,16 @@
 	<div class="div-top">
 		<h1 class="font">
 			<a href="/projetoBiblioteca/home.jsp" style="color: white;">Home</a>
-			»» Livros
+			»» <a href="/projetoBiblioteca/listaLivros.jsp" style="color: white;">Livros</a>
+			»» Listar Por Editora
 		</h1>
 	</div>
 	<div class="div-action">
-		<a href="/projetoBiblioteca/adicionarLivro.jsp">• Adicionar Livro</a>
-		&nbsp;&nbsp;&nbsp;
-		<!-- <a href="/projetoBiblioteca/ListarPorEditora">•
-			Listar Por Editora</a> -->
+		<a> </a>
 
 	</div>
 	<%-- </center> --%>
 	<div align="center">
-		<form action="ListarPorEditora">
-			<input type="text" name="listarPorEditora"
-				placeholder="Quer buscar por uma editora? Digite Aqui!"
-				style="width: 20%;margin-top: 1%;" /><input type="submit" value="Submit" />
-		</form>
-
 		<table border="5" cellpadding="10"
 			style="margin-bottom: 3%; border-color: cadetblue;">
 
@@ -47,23 +39,27 @@
 				<th style="width: 10em;">Área</th>
 				<th style="width: 10em;"></th>
 			</tr>
-
+					
 			<%
-				ArrayList<Livro> listaLivros = new LivroController().listarTodasLivros();
-				for (Livro livro : listaLivros) {
+				Object listarPorEditora = session.getAttribute("listarPorEditora");
+				ArrayList<Livro> listaLivros = new LivroController().listarPorEditora(listarPorEditora.toString());
+				for (Livro listar : listaLivros) {
+					System.out.println(listarPorEditora);
 			%>
+
+			
 			<tr>
-				<td><%=livro.getNome()%></td>
-				<td><%=livro.getEditora()%></td>
-				<td><%=livro.getEdicao()%></td>
-				<td><%=livro.getArea()%></td>
+				<td><%=listar.getNome()%></td>
+				<td><%=listar.getEditora()%></td>
+				<td><%=listar.getEdicao()%></td>
+				<td><%=listar.getArea()%></td>
 				<%
-					request.setAttribute("livro", livro);
+					request.setAttribute("listar", listar);
 				%>
 				<td><a
-					href="/projetoBiblioteca/EditarLivro?id=${livro.getId()}">Editar</a>
+					href="/projetoBiblioteca/EditarLivro?id=${listar.getId()}">Editar</a>
 					&nbsp;&nbsp;&nbsp;&nbsp; <a
-					href="/projetoBiblioteca/DeletarLivro?id=${livro.getId()}">Deletar</a></td>
+					href="/projetoBiblioteca/DeletarLivro?id=${listar.getId()}">Deletar</a></td>
 			</tr>
 
 			<%

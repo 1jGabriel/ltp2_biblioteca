@@ -34,6 +34,9 @@ public class LivroController {
 		return livroDAO.consultar(id);
 	}
 	
+	public ArrayList<Livro> listarPorEditora(String editora){
+		return livroDAO.consultar(editora);
+	}
 	
 
 }
